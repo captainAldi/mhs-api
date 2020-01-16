@@ -13,8 +13,11 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::resource('mahasiswa', 'API\MahasiswaController');
+Route::post('register', 'API\extAuthController@register');
+Route::post('login', 'API\extAuthController@login');
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:api')->group( function () {
+	Route::resource('mahasiswa', 'API\MahasiswaController');
 });
+
+
